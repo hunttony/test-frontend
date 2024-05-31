@@ -34,7 +34,7 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get('http://10.0.28.124:5000/items')
+    axios.get('https://10.0.28.124:5000/items')
       .then(response => {
         setItems(response.data);
       })
@@ -72,7 +72,7 @@ function App() {
       }
     }
 
-    axios.post('http://10.0.28.124:5000/items', formData, {
+    axios.post('https://10.0.28.124:5000/items', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
