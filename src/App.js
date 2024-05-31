@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
+// Set your API Gateway URL
+const API_BASE_URL = 'https://3on6dc8mx5.execute-api.us-east-2.amazonaws.com/prod';
+
 function App() {
   const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState({
@@ -34,7 +37,7 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get('https://10.0.28.124:5000/items')
+    axios.get(`${API_BASE_URL}/items`)
       .then(response => {
         setItems(response.data);
       })
@@ -72,7 +75,7 @@ function App() {
       }
     }
 
-    axios.post('https://10.0.28.124:5000/items', formData, {
+    axios.post(`${API_BASE_URL}/items`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -116,14 +119,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <h1>Items</h1>
-      <ul className="item-list">
+        <h1>Items</h1>
+        <ul className="item-list">
           {items.map(item => (
             <li key={item.id}>
-              
               <div className="item-card">
                 {console.log(item.image1)}
-                
                 {item.image && <img src={item.image} alt={item.name} className="item-image" />}
                 {item.image1 && <img src={item.image1} alt={item.name} className="item-image" />}
                 {item.image2 && <img src={item.image2} alt={item.name} className="item-image" />}
