@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 
 // Set your API Gateway URL
-const API_BASE_URL = 'http://3.21.248.168:5000';
+const API_BASE_URL = 'https://3.21.248.168:5000';
 
 function App() {
   const [items, setItems] = useState([]);
