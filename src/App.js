@@ -41,6 +41,7 @@ function App() {
       .then(response => {
         console.log('API Response:', response.data); // Check the response data
         setItems(response.data);
+        
       })
       .catch(error => {
         console.error('There was an error fetching the items!', error);
@@ -123,12 +124,12 @@ function App() {
         <h1>Items</h1>
         <ul className="item-list">
           {(Array.isArray(items) ? items : []).map(item => (
-            <li key={item.id}>
+            <li key={item.id}>{console.log(item.id)}
               <div className="item-card">
                 {item.image && <img src={item.image} alt={item.name} className="item-image" />}
                 {item.image1 && <img src={item.image1} alt={item.name} className="item-image" />}
                 {item.image2 && <img src={item.image2} alt={item.name} className="item-image" />}
-                <h3>{item.name}</h3>
+                <h3>{item.name}</h3>{console.log(item.name)}
                 <p>{item.bio}</p>
                 <p>{item.tagline}</p>
                 <p>{item.cuisine}</p>
