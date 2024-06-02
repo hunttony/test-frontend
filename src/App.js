@@ -124,7 +124,6 @@ function App() {
           {items.map(item => (
             <li key={item.id}>
               <div className="item-card">
-                {console.log(item.image1)}
                 {item.image && <img src={item.image} alt={item.name} className="item-image" />}
                 {item.image1 && <img src={item.image1} alt={item.name} className="item-image" />}
                 {item.image2 && <img src={item.image2} alt={item.name} className="item-image" />}
