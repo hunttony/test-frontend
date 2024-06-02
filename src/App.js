@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 
 // Set your API Gateway URL
-const API_BASE_URL = 'https://your-api-id.execute-api.region.amazonaws.com/dev';
+const API_BASE_URL = 'https://ty5ed10kod.execute-api.us-east-2.amazonaws.com/dev';
 
 function App() {
   const [items, setItems] = useState([]);
