@@ -39,9 +39,9 @@ function App() {
   useEffect(() => {
     axios.get(`${API_BASE_URL}/items`)
       .then(response => {
-       // console.log('API Response:', response.data); // Check the response data
-        setItems(response.data);
-        
+         // Check the response data
+        const items = JSON.parse(response.data.body); // Parse the body
+        setItems(items);
       })
       .catch(error => {
         console.error('There was an error fetching the items!', error);
@@ -83,7 +83,8 @@ function App() {
       }
     })
       .then(response => {
-        setItems([...items, response.data]);
+        const newItems = JSON.parse(response.data.body); // Parse the body
+        setItems([...items, ...newItems]);
         console.log('API Response p2:', response.data);
         setNewItem({
           username: '',
@@ -116,7 +117,6 @@ function App() {
 
         console.log('API Response p3:', response.data, response.data.name);
       })
-      
       .catch(error => {
         console.error('There was an error adding the item!', error);
       });
@@ -127,8 +127,8 @@ function App() {
       <header className="App-header">
         <h1>Items</h1>
         <ul className="item-list">
-          {(Array.isArray(items ? items : [])).map(item => (
-            <li key={item.id}>
+          {items.length > 0 ? items.map(item => (
+            <li key={`${item.pk}-${item.sk}`}>
               <div className="item-card">
                 {item.image && <img src={item.image} alt={item.name} className="item-image" />}
                 {item.image1 && <img src={item.image1} alt={item.name} className="item-image" />}
@@ -140,7 +140,7 @@ function App() {
                 <p>{item.tags}</p>
               </div>
             </li>
-          ))}
+          )) : <p>No items to display</p>}
         </ul>
         <form onSubmit={handleSubmit}>
           <input type="text" name="username" placeholder="Username" value={newItem.username} onChange={handleChange} />
