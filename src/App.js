@@ -39,7 +39,6 @@ function App() {
   useEffect(() => {
     axios.get(`${API_BASE_URL}/items`)
       .then(response => {
-        console.log(response.data); // Check the response data
         setItems(response.data);
       })
       .catch(error => {
@@ -122,7 +121,7 @@ function App() {
       <header className="App-header">
         <h1>Items</h1>
         <ul className="item-list">
-          {(Array.isArray(items) ? items : []).map(item => (
+          {items.map(item => (
             <li key={item.id}>
               <div className="item-card">
                 {item.image && <img src={item.image} alt={item.name} className="item-image" />}
