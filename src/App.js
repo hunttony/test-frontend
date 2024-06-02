@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 
 // Set your API Gateway URL
-const API_BASE_URL = 'https://ty5ed10kod.execute-api.us-east-2.amazonaws.com/dev';
+const API_BASE_URL = 'https://your-api-id.execute-api.region.amazonaws.com/dev';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -39,6 +39,7 @@ function App() {
   useEffect(() => {
     axios.get(`${API_BASE_URL}/items`)
       .then(response => {
+        console.log(response.data); // Check the response data
         setItems(response.data);
       })
       .catch(error => {
@@ -121,7 +122,7 @@ function App() {
       <header className="App-header">
         <h1>Items</h1>
         <ul className="item-list">
-          {items.map(item => (
+          {(Array.isArray(items) ? items : []).map(item => (
             <li key={item.id}>
               <div className="item-card">
                 {item.image && <img src={item.image} alt={item.name} className="item-image" />}
