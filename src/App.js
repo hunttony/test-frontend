@@ -39,7 +39,7 @@ function App() {
   useEffect(() => {
     axios.get(`${API_BASE_URL}/items`)
       .then(response => {
-        console.log('API Response:', response.data); // Check the response data
+       // console.log('API Response:', response.data); // Check the response data
         setItems(response.data);
         
       })
@@ -84,6 +84,7 @@ function App() {
     })
       .then(response => {
         setItems([...items, response.data]);
+        console.log('API Response p2:', response.data);
         setNewItem({
           username: '',
           email: '',
@@ -112,7 +113,10 @@ function App() {
             linkedin: ''
           }
         });
+
+        console.log('API Response p3:', response.data, response.data.name);
       })
+      
       .catch(error => {
         console.error('There was an error adding the item!', error);
       });
@@ -123,13 +127,13 @@ function App() {
       <header className="App-header">
         <h1>Items</h1>
         <ul className="item-list">
-          {(Array.isArray(items) ? items : []).map(item => (
-            <li key={item.id}>{console.log(item.id)}
+          {(Array.isArray(items ? items : [])).map(item => (
+            <li key={item.id}>
               <div className="item-card">
                 {item.image && <img src={item.image} alt={item.name} className="item-image" />}
                 {item.image1 && <img src={item.image1} alt={item.name} className="item-image" />}
                 {item.image2 && <img src={item.image2} alt={item.name} className="item-image" />}
-                <h3>{item.name}</h3>{console.log(item.name)}
+                <h3>{item.name}</h3>
                 <p>{item.bio}</p>
                 <p>{item.tagline}</p>
                 <p>{item.cuisine}</p>
